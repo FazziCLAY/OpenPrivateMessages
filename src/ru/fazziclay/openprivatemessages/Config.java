@@ -3,6 +3,7 @@ package ru.fazziclay.openprivatemessages;
 public class Config {
     public static String commandUsing   = Main.pluginConfig.getString("commandUsing");
     public static String playerNotFound = Main.pluginConfig.getString("playerNotFound");
+    public static String timeFormat     = Main.pluginConfig.getString("timeFormat");
 
     public static String recipientMessagePattern        = Main.pluginConfig.getString( "recipientMessage.Pattern");
     public static Boolean recipientMessageHoverEnable   = Main.pluginConfig.getBoolean("recipientMessage.Hover.Enable");

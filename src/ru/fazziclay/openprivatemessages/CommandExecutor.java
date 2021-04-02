@@ -9,10 +9,18 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class CommandExecutor implements org.bukkit.command.CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(Config.timeFormat);
+        LocalDateTime now = LocalDateTime.now();
+
+
+        String time = dtf.format(now);
         String playerNick;
         String message;
 
@@ -42,15 +50,17 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
         // message to recipient
         TextComponent textComponentRecipient = new TextComponent(Config.recipientMessagePattern
                 .replace("&", "§")
-                .replace("$recipient_nickname", playerNick)
+                .replace("$recipient_nickname", player.getName())
                 .replace("$sender_nickname", sender.getName())
                 .replace("$message", message)
+                .replace("$time", time)
         );
         if (Config.recipientMessageClickEnable) {
             textComponentRecipient.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, Config.recipientMessageClickText
                     .replace("&", "§")
                     .replace("$command", command.getName())
                     .replace("$sender_nickname", sender.getName())
+                    .replace("$time", time)
             ));
         }
         if (Config.recipientMessageHoverEnable) {
@@ -60,6 +70,7 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
                             .replace("$sender_nickname", sender.getName())
                             .replace("$recipient_nickname", player.getName())
                             .replace("$message", message)
+                            .replace("$time", time)
             ).create()
             ));
         }
@@ -69,15 +80,17 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
         // message to sender
         TextComponent textComponentSender = new TextComponent(Config.senderMessagePattern
                 .replace("&", "§")
-                .replace("$recipient_nickname", playerNick)
+                .replace("$recipient_nickname", player.getName())
                 .replace("$sender_nickname", sender.getName())
                 .replace("$message", message)
+                .replace("$time", time)
         );
         if (Config.senderMessageClickEnable) {
             textComponentSender.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, Config.senderMessageClickText
                     .replace("&", "§")
                     .replace("$command", command.getName())
-                    .replace("$sender_nickname", sender.getName())
+                    .replace("$recipient_nickname", player.getName())
+                    .replace("$time", time)
             ));
         }
         if (Config.senderMessageHoverEnable) {
@@ -87,6 +100,7 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
                             .replace("$sender_nickname", sender.getName())
                             .replace("$recipient_nickname", player.getName())
                             .replace("$message", message)
+                            .replace("$time", time)
             ).create()
             ));
         }

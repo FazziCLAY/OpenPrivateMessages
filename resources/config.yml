@@ -1,5 +1,6 @@
 commandUsing: "Используйте /$command <player> <message>"
 playerNotFound: "Игрок не найден."
+timeFormat: "dd.MM.yyyy HH:mm:ss"
 
 recipientMessage:
   Pattern: "$sender_nickname -> $recipient_nickname: $message"
