@@ -1,0 +1,20 @@
+commandUsing: "Используйте /$command <player> <message>"
+playerNotFound: "Игрок не найден."
+
+recipientMessage:
+  Pattern: "$sender_nickname -> $recipient_nickname: $message"
+  Hover:
+    Enable: true
+    Text: "&9~~~~ PrivateMessage ~~~~\n&a$sender_nickname &7-> &a$recipient_nickname\n&d(Click to reply)\n\n&f$message"
+  Click:
+    Enable: true
+    Text: "/$command $sender_nickname "
+
+senderMessage:
+  Pattern: "&2Сообщение отправлено!"
+  Hover:
+    Enable: true
+    Text: "&9~~~~ PrivateMessage ~~~~\n&a$sender_nickname &7-> &a$recipient_nickname\n&d(Click to send $recipient_nickname)\n\n&f$message"
+  Click:
+    Enable: true
+    Text: "/$command $sender_nickname "

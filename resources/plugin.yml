@@ -1,6 +1,9 @@
 name: OpenPrivateMessages
 main: ru.fazziclay.openprivatemessages.Main
 version: 0.1
+api-version: 1.13
+author: https://github.com/fazziclay
+
 commands:
   tell:
     usage: /tell <player> <messsage>
@@ -19,5 +22,5 @@ commands:
 
 permissions:
   openprivatemessages.command.privatemessage:
-    default: op
+    default: true
     description: commands using permission
