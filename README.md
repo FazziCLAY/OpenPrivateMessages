@@ -1,18 +1,23 @@
 # OpenPrivateMessages
 ## Minecraft bukkit plugin.
 
+---
+RUSSIAN README - [README_RU.md](./README_RU.md)
+
+---
+
 ### config.yml
 ```yaml
-commandUsing: "Используйте /$command <player> <message>"
-# Когда команда исполняется без аргумента игрока или сообщения
+commandUsing: "Use /$command <player> <message>"
+# When a command is executed without a player argument or message
 
-playerNotFound: "Игрок не найден."
-# Когда получатель сообщения не онлайн.
+playerNotFound: "Player not found"
+# When the recipient of the message is offline.
 
 timeFormat: "dd.MM.yyyy HH:mm:ss"
-# Формат времени. Нужно для переменной $time
+# Time format. Required for the $time variable
 
-recipientMessage: # Сообщение со стороны получателя
+recipientMessage: # Message from the recipient's side
   Pattern: "$sender_nickname -> $recipient_nickname: $message"
   Hover:
     Enable: true
@@ -21,8 +26,8 @@ recipientMessage: # Сообщение со стороны получателя
     Enable: true
     Text: "/$command $sender_nickname "
 
-senderMessage: # Сообщение со стороны отправителя
-  Pattern: "&2Сообщение отправлено!"
+senderMessage: # Message from the sender's side
+  Pattern: "&2Message sent!"
   Hover:
     Enable: true
     Text: "&9~~~~ PrivateMessage ~~~~\n&a$sender_nickname &7-> &a$recipient_nickname\n&d(Click to send $recipient_nickname)\n\n&f$message"
@@ -31,28 +36,30 @@ senderMessage: # Сообщение со стороны отправителя
     Text: "/$command $sender_nickname "
 ```
 
-### Доступные переменне в конфиге
+### Available variables in config
 **recipientMessagePattern** & **senderMessagePattern**:
-- $recipient_nickname - Ник получателя
-- $sender_nickname - Ник отправителя
-- $message - Контент сообщения
-- $time - Время при отправке
+- $recipient_nickname - The recipient's nickname
+- $sender_nickname - Sender's nickname
+- $message - Message content
+- $time - Time when sending
 
 **recipientMessageClickText**:
-- $command - Используемая команда
-- $sender_nickname - Ник отправителя
-- $time - Время при отправке
+- $command - Command to use
+- $sender_nickname - Sender's nickname
+- $time - Time when sending
 
 **senderMessageClickText**
-- $command - Используемая команда
-- $recipient_nickname - Ник получателя
-- $time - Время при отправке
+- $command - Command to use
+- $recipient_nickname - The recipient's nickname
+- $time - Time when sending
 
 **recipientMessageHoverText** & **senderMessageHoverText**:
-- $sender_nickname - Ник отправителя
-- $recipient_nickname - Ник получателя
-- $message - Контент сообщения
-- $time - Время при отправке
+- $sender_nickname - Sender's nickname
+- $recipient_nickname - The recipient's nickname
+- $message - Message content
+- $time - Time when sending
 
 **commandUsing**:
-- $command - Используемая команда. Если /tell <...> то tell; Если /msg <...> то msg
+- $command - The command to use. If /tell <...> then tell; If /msg <...> then msg
+
+(Translated from `Google Translate`)
