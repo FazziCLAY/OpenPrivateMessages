@@ -3,3 +3,10 @@ main: ru.fazziclay.openprivatemessages.Main
 version: 0.2B
 api-version: 1.13
 author: https://github.com/fazziclay
+depend:
+  - CommandAPI
+
+permissions:
+  openprivatemessages.command:
+    default: true
+    description: tell, msg, w, ... permission

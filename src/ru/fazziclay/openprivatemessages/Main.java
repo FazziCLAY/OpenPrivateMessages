@@ -27,7 +27,7 @@ public class Main extends JavaPlugin {
             int finalI = i;
             new CommandAPICommand(Config.commands.get(i))
                     .withArguments(Utils.getPlayerNicknameArgument("targets"), new GreedyStringArgument("message"))
-                    .withPermission(CommandPermission.NONE)
+                    .withPermission("openprivatemessages.command")
                     .executes((sender, args) -> {
                         CommandExecutor.onCommand(sender,Config.commands.get(finalI), args);
                     }).register();
