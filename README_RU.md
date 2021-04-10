@@ -31,7 +31,7 @@ senderMessage: # Сообщение со стороны отправителя
     Text: "&9~~~~ PrivateMessage ~~~~\n&a$sender_nickname &7-> &a$recipient_nickname\n&d(Click to send $recipient_nickname)\n\n&f$message"
   Click:
     Enable: true
-    Text: "/$command $sender_nickname "
+    Text: "/$command $recipient_nickname "
 ```
 
 ### Доступные переменне в конфиге
