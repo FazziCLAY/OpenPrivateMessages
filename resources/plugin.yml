@@ -3,24 +3,3 @@ main: ru.fazziclay.openprivatemessages.Main
 version: 0.1
 api-version: 1.13
 author: https://github.com/fazziclay
-
-commands:
-  tell:
-    usage: /tell <player> <messsage>
-    description: Send private message to player
-    permission: openprivatemessages.command.privatemessage
-
-  msg:
-    usage: /msg <player> <messsage>
-    description: Send private message to player
-    permission: openprivatemessages.command.privatemessage
-
-  w:
-    usage: /w <player> <messsage>
-    description: Send private message to player
-    permission: openprivatemessages.command.privatemessage
-
-permissions:
-  openprivatemessages.command.privatemessage:
-    default: true
-    description: commands using permission

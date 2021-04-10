@@ -1,56 +1,39 @@
 package ru.fazziclay.openprivatemessages;
 
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-
-public class CommandExecutor implements org.bukkit.command.CommandExecutor {
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(Config.timeFormat);
-        LocalDateTime now = LocalDateTime.now();
-
-
-        String time = dtf.format(now);
-        String playerNick;
+public class CommandExecutor {
+    public static void onCommand(CommandSender sender, String command, Object[] args) {
+        // Args
+        Player target;
         String message;
 
+        // Time
+        String time = Utils.getTimeFormat(Config.timeFormat);
+
         try {
-            playerNick = args[0];
-            message = args[1];
+            target = (Player) args[0];
+            message = (String) args[1];
 
-            for (int i = 2; i < args.length; i++) {
-                message = message + " " + args[i];
-            }
         } catch (Exception e) {
-            sender.sendMessage(Config.commandUsing
-                    .replace("&", "§")
-                    .replace("$command", command.getName())
-            );
-            return true;
-        }
-
-        Player player = Bukkit.getPlayer(playerNick);
-        if (player == null) {
-            sender.sendMessage(Config.playerNotFound
-                    .replace("&", "§")
-            );
-            return true;
+            if (Config.playerNotFoundIsTranslatable) {
+                TranslatableComponent a = new TranslatableComponent(Config.playerNotFoundPattern);
+                a.setColor(ChatColor.RED);
+                sender.spigot().sendMessage(a);
+                return;
+            }
+            sender.sendMessage(Config.playerNotFoundPattern);
+            return;
         }
 
         // message to recipient
         TextComponent textComponentRecipient = new TextComponent(Config.recipientMessagePattern
                 .replace("&", "§")
-                .replace("$recipient_nickname", player.getName())
+                .replace("$recipient_nickname", target.getName())
                 .replace("$sender_nickname", sender.getName())
                 .replace("$message", message)
                 .replace("$time", time)
@@ -58,7 +41,7 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
         if (Config.recipientMessageClickEnable) {
             textComponentRecipient.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, Config.recipientMessageClickText
                     .replace("&", "§")
-                    .replace("$command", command.getName())
+                    .replace("$command", command)
                     .replace("$sender_nickname", sender.getName())
                     .replace("$time", time)
             ));
@@ -68,19 +51,19 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
                     Config.recipientMessageHoverText
                             .replace("&", "§")
                             .replace("$sender_nickname", sender.getName())
-                            .replace("$recipient_nickname", player.getName())
+                            .replace("$recipient_nickname", target.getName())
                             .replace("$message", message)
                             .replace("$time", time)
             ).create()
             ));
         }
-        player.spigot().sendMessage(textComponentRecipient);
+        target.spigot().sendMessage(textComponentRecipient);
 
 
         // message to sender
         TextComponent textComponentSender = new TextComponent(Config.senderMessagePattern
                 .replace("&", "§")
-                .replace("$recipient_nickname", player.getName())
+                .replace("$recipient_nickname", target.getName())
                 .replace("$sender_nickname", sender.getName())
                 .replace("$message", message)
                 .replace("$time", time)
@@ -88,8 +71,8 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
         if (Config.senderMessageClickEnable) {
             textComponentSender.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, Config.senderMessageClickText
                     .replace("&", "§")
-                    .replace("$command", command.getName())
-                    .replace("$recipient_nickname", player.getName())
+                    .replace("$command", command)
+                    .replace("$recipient_nickname", target.getName())
                     .replace("$time", time)
             ));
         }
@@ -98,13 +81,12 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
                     Config.senderMessageHoverText
                             .replace("&", "§")
                             .replace("$sender_nickname", sender.getName())
-                            .replace("$recipient_nickname", player.getName())
+                            .replace("$recipient_nickname", target.getName())
                             .replace("$message", message)
                             .replace("$time", time)
             ).create()
             ));
         }
         sender.spigot().sendMessage(textComponentSender);
-        return true;
     }
 }

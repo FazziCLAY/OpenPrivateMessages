@@ -1,8 +1,6 @@
-commandUsing: "Use /$command <player> <message>"
-# When a command is executed without a player argument or message
-
-playerNotFound: "Player not found"
-# When the recipient of the message is offline.
+playerNotFound: # When the recipient of the message is offline.
+  Pattern: "argument.entity.notfound.player"
+  IsTranslatable: true # Using message from data/lang/<client_lang>.json
 
 timeFormat: "dd.MM.yyyy HH:mm:ss"
 # Time format. Required for the $time variable

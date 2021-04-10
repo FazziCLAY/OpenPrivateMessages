@@ -1,8 +1,12 @@
 package ru.fazziclay.openprivatemessages;
 
+import java.util.List;
+
 public class Config {
-    public static String commandUsing   = Main.pluginConfig.getString("commandUsing");
-    public static String playerNotFound = Main.pluginConfig.getString("playerNotFound");
+    public static List<String> commands = Main.pluginConfig.getStringList("commands");
+
+    public static String playerNotFoundPattern = Main.pluginConfig.getString("playerNotFound.Pattern");
+    public static Boolean playerNotFoundIsTranslatable = Main.pluginConfig.getBoolean("playerNotFound.IsTranslatable");
     public static String timeFormat     = Main.pluginConfig.getString("timeFormat");
 
     public static String recipientMessagePattern        = Main.pluginConfig.getString( "recipientMessage.Pattern");
