@@ -17,6 +17,8 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        loadConfig();
+
         CommandAPI.onEnable(this);
 
         for (int i = 0; i < Config.commands.size(); i++) {
@@ -30,8 +32,6 @@ public class Main extends JavaPlugin {
                         CommandExecutor.onCommand(sender,Config.commands.get(finalI), args);
                     }).register();
         }
-
-        loadConfig();
     }
 
     public void loadConfig() {

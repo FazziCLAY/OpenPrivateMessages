@@ -3,11 +3,14 @@
 
 ### config.yml
 ```yaml
-commandUsing: "Use /$command <player> <message>"
-# Когда команда выполняется без аргумента игрока или сообщения
+commands:
+  - tell
+  - msg
+  - w
 
-playerNotFound: "Player not found"
-# Когда получатель сообщения не онлайн.
+playerNotFound: # Когда получатель сообщения не онлайн.
+  Pattern: "argument.entity.notfound.player"
+  IsTranslatable: true # Использовать сообщение из data/lang/<язык_клиента>.json
 
 timeFormat: "dd.MM.yyyy HH:mm:ss"
 # Формат времени. Нужно для переменной $time
@@ -53,6 +56,3 @@ senderMessage: # Сообщение со стороны отправителя
 - $recipient_nickname - Ник получателя
 - $message - Контент сообщения
 - $time - Время при отправке
-
-**commandUsing**:
-- $command - Используемая команда. Если /tell <...> то tell; Если /msg <...> то msg

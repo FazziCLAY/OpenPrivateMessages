@@ -1,3 +1,8 @@
+commands:
+  - tell
+  - msg
+  - w
+
 playerNotFound: # When the recipient of the message is offline.
   Pattern: "argument.entity.notfound.player"
   IsTranslatable: true # Using message from data/lang/<client_lang>.json
@@ -9,7 +14,7 @@ recipientMessage: # Message from the recipient's side
   Pattern: "$sender_nickname -> $recipient_nickname: $message"
   Hover:
     Enable: true
-    Text: "&9~~~~ PrivateMessage ~~~~\n&a$sender_nickname &7-> &a$recipient_nickname\n&d(Click to reply)\n\n&f$message"
+    Text: "&9~~~~ PrivateMessage ~~~~\n&7$time\n&a$sender_nickname &7-> &a$recipient_nickname\n&d(Click to reply)\n\n&f$message"
   Click:
     Enable: true
     Text: "/$command $sender_nickname "
@@ -18,7 +23,7 @@ senderMessage: # Message from the sender's side
   Pattern: "&2Message sent!"
   Hover:
     Enable: true
-    Text: "&9~~~~ PrivateMessage ~~~~\n&a$sender_nickname &7-> &a$recipient_nickname\n&d(Click to send $recipient_nickname)\n\n&f$message"
+    Text: "&9~~~~ PrivateMessage ~~~~\n&7$time\n&a$sender_nickname &7-> &a$recipient_nickname\n&d(Click to send $recipient_nickname)\n\n&f$message"
   Click:
     Enable: true
-    Text: "/$command $sender_nickname "
+    Text: "/$command $recipient_nickname "

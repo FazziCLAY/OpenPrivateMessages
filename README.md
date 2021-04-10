@@ -8,11 +8,14 @@ RUSSIAN README - [README_RU.md](./README_RU.md)
 
 ### config.yml
 ```yaml
-commandUsing: "Use /$command <player> <message>"
-# When a command is executed without a player argument or message
+commands:
+  - tell
+  - msg
+  - w
 
-playerNotFound: "Player not found"
-# When the recipient of the message is offline.
+playerNotFound: # When the recipient of the message is offline.
+  Pattern: "argument.entity.notfound.player"
+  IsTranslatable: true # Using message from data/lang/<client_lang>.json
 
 timeFormat: "dd.MM.yyyy HH:mm:ss"
 # Time format. Required for the $time variable
@@ -58,8 +61,5 @@ senderMessage: # Message from the sender's side
 - $recipient_nickname - The recipient's nickname
 - $message - Message content
 - $time - Time when sending
-
-**commandUsing**:
-- $command - The command to use. If /tell <...> then tell; If /msg <...> then msg
 
 (Translated from `Google Translate`)
