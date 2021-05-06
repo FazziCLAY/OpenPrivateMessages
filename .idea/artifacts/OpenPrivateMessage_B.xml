@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="OpenPrivateMessage-B">
+    <output-path>$PROJECT_DIR$/../../../minecraftCores/VanillaSurvival/plugins</output-path>
+    <root id="archive" name="OpenPrivateMessage-B.jar">
+      <element id="module-output" name="OpenPrivateMessages" />
+    </root>
+  </artifact>
+</component>
