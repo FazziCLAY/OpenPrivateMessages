@@ -1,14 +1,19 @@
 package ru.fazziclay.openprivatemessages;
 
 import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.*;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.UUID;
 
 
 public class CommandExecutor {
     public static void onCommand(CommandSender sender, String command, Object[] args) {
         // Args
+        Player senderPlayer = (Player) sender;
         Player target;
         String message;
 
@@ -57,7 +62,8 @@ public class CommandExecutor {
             ).create()
             ));
         }
-        target.spigot().sendMessage(textComponentRecipient);
+
+        target.spigot().sendMessage(ChatMessageType.SYSTEM, senderPlayer.getUniqueId(), textComponentRecipient);
 
 
         // message to sender
@@ -87,6 +93,6 @@ public class CommandExecutor {
             ).create()
             ));
         }
-        sender.spigot().sendMessage(textComponentSender);
+        senderPlayer.spigot().sendMessage(ChatMessageType.SYSTEM, textComponentSender);
     }
 }
